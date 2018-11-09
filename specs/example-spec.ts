@@ -23,9 +23,7 @@ describe('Testing todomvc.com with angularjs ', () => {
 
     it('TODO list should contains one element, which is marked as done', ()=> {
         homePage.markCompleted();
-        homePage.clickOnCompletedTab();
-        expect<any>(homePage.getTodo()).toEqual('Make dinner');
-    
+        expect<any>(homePage.remainingCount()).toEqual('0');
     });
 
     it('TODO list of active elements contains one element', ()=> {
@@ -35,11 +33,13 @@ describe('Testing todomvc.com with angularjs ', () => {
     })
 
     it('TODO list of completed elements contains one element', ()=> {
-        
+        homePage.clickOnCompletedTab();
+        expect<any>(homePage.getTodo()).toEqual('Make dinner');
     })
 
     it('Marked element will be removed from the list', ()=> {
-        
+        homePage.clearCompletedTodos();
+        expect<any>(homePage.remainingCount()).toEqual('1');
     })
 
     it('Deleted element will be removed from the list', ()=> {
