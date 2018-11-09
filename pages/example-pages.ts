@@ -10,6 +10,8 @@ export class HomePage{
     public markDoneElement: ElementFinder;
     public completedTab: ElementFinder;
     public activeTab: ElementFinder;
+    public remainingCountElement: ElementFinder;
+    public clearCompletedButton: ElementFinder;
 
 
     constructor(){
@@ -21,6 +23,8 @@ export class HomePage{
         this.markDoneElement = $('[ng-model="todo.completed"]');
         this.completedTab = $$('[class="footer"] [ng-class]').get(2);
         this.activeTab = $$('[class="footer"] [ng-class]').get(1);
+        this.remainingCountElement= $$('[class="footer"] [class="ng-binding"]').get(0);
+        this.clearCompletedButton= $('[ng-click="clearCompletedTodos()"]');
 
     }
 
@@ -52,6 +56,14 @@ export class HomePage{
 
     public clickOnActiveTab(): void{
         this.activeTab.click();
+    }
+
+    public remainingCount(): promise.Promise<string>{
+        return this.remainingCountElement.getText();
+    }
+
+    public clearCompletedTodos(): void{
+        this.clearCompletedButton.click();
     }
 
 
