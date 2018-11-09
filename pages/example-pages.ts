@@ -12,6 +12,7 @@ export class HomePage{
     public activeTab: ElementFinder;
     public remainingCountElement: ElementFinder;
     public clearCompletedButton: ElementFinder;
+    public sharpSign: ElementFinder;
 
 
     constructor(){
@@ -25,6 +26,7 @@ export class HomePage{
         this.activeTab = $$('[class="footer"] [ng-class]').get(1);
         this.remainingCountElement= $$('[class="footer"] [class="ng-binding"]').get(0);
         this.clearCompletedButton= $('[ng-click="clearCompletedTodos()"]');
+        this.sharpSign= $('[ng-click="removeTodo(todo)"]').get(0);
 
     }
 
@@ -64,6 +66,10 @@ export class HomePage{
 
     public clearCompletedTodos(): void{
         this.clearCompletedButton.click();
+    }
+
+    public deletedEelement(): void{
+        this.sharpSign.click();
     }
 
 
