@@ -43,7 +43,10 @@ describe('Testing todomvc.com with angularjs ', () => {
     })
 
     it('Deleted element will be removed from the list', ()=> {
-        
+        homePage.addTodo('Kiss');
+        homePage.clickOnActiveTab();
+        homePage.deletedEelement();
+        expect<any>(homePage.remainingCount()).toEqual('1');
     })
 
     it('TODO list contains two elements of "Runing"', ()=> {
