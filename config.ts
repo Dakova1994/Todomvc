@@ -4,7 +4,7 @@ import * as JasmineConsoleReporter from 'jasmine-console-reporter';
 export let config: Config = {
     baseUrl: 'http://todomvc.com/examples/angularjs/#/',
     capabilities: {
-        'browserName': 'chrome',
+        'browserName': 'firefox',
     },
     framework: 'jasmine2',
     specs: ['specs/**/example-spec.js'],
