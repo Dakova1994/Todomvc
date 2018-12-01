@@ -1,5 +1,6 @@
 import { HomePage } from "../pages/example-pages";
-import { browser } from "protractor";
+import { browser, WebDriver } from "protractor";
+import { Driver } from "selenium-webdriver/chrome";
 
 
 const homePage: HomePage = new HomePage();
@@ -20,15 +21,14 @@ describe('Testing todomvc.com with angularjs ', () => {
         expect<any>(homePage.getTodo()).toEqual('Make dinner');
     });
     //3
-    /*
     it('TODO list should contains one element, which is marked as done', ()=> {
         homePage.markCompleted();
         expect<any>(homePage.remainingCount()).toEqual('0');
     });
     //4
     it('TODO list of active elements contains one element', ()=> {
-        homePage.clickOnActiveTab();
         homePage.addTodo('Clear kitchen');
+        homePage.clickOnActiveTab();
         expect<any>(homePage.getTodo()).toEqual('Clear kitchen');
     })
     //5
@@ -38,39 +38,49 @@ describe('Testing todomvc.com with angularjs ', () => {
     })
     //6
     it('Marked element will be removed from the list', ()=> {
-        homePage.deletedEelement();
-        expect<any>(homePage.remainingCount()).toEqual('1');
+        homePage.clearCompletedTodos();
+        expect<any>(homePage.remainingCount()).toBeLessThan(2);
     })
     //7
     it('Deleted element will be removed from the list', ()=> {
-        homePage.addTodo('Kiss');
         homePage.clickOnActiveTab();
-        homePage.clearCompletedTodos();
-        expect<any>(homePage.remainingCount()).toEqual('1');
+        homePage.deletedEelement();
+     //   expect<any>(homePage.remainingCount()). how to check that?
     })
     //8
     it('TODO list contains two elements of "Runing"', ()=> {
         homePage.addTodo('Runing');
         homePage.addTodo('Runing');
-        //expect<any>(homePage.secondTodo()).toEqual('Runing');
+        expect<any>(homePage.getTodo()).toEqual('Runing');
+        expect<any>(homePage.getTodoLast()).toEqual('Runing');
         
     })
     //9
     it('Elemenet shouldnt be added to list', ()=> {
-        
+        homePage.addTodo(' ');
+        expect<any>(homePage.getTodo()).toEqual('Runing');
+        expect<any>(homePage.getTodoLast()).toEqual('Runing'); 
     })
-
+    //10
     it('TODO list contains two elements. First : "swimming:" Second: "FLYING"', ()=> {
-        
+        homePage.addTodo('swimming');
+        expect<any>(homePage.getTodoLast()).toEqual('swimming');
+        homePage.addTodo('FLYING');
+        expect<any>(homePage.getTodoLast()).toEqual('FLYING');
     })
-
+    //11
     it('TODO list contains two elements. First : "12345:" Second: "!@#$%"', ()=> {
-        
+        homePage.addTodo('12345');
+        expect<any>(homePage.getTodoLast()).toEqual('12345');
+        homePage.addTodo('!@#$%');
+        expect<any>(homePage.getTodoLast()).toEqual('!@#$%');
     })
-
+    //12
     it('TODO list contains elements.', ()=> {
-        
-    })*/
+        homePage.close();
+        homePage.open();
+        expect<any>(homePage.remainingCount()).toBeGreaterThan(1);
+    })
 
 
 });

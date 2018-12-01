@@ -1,5 +1,5 @@
 import { $, $$, browser, element, by, promise, ElementFinder, ElementArrayFinder } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
+import { protractor, Ptor } from 'protractor/built/ptor';
 
 
 export class HomePage{
@@ -36,6 +36,10 @@ export class HomePage{
         browser.get(this.url);
     }
 
+    public close():void {
+        browser.
+    }
+
     public addTodo(addTodoElement){
         this.clickOnTextBox.click();
         this.textBox.sendKeys(addTodoElement);
@@ -44,6 +48,11 @@ export class HomePage{
 
     public getTodo(): promise.Promise<string> {
         let item = this.listTodo.first()
+        return item.getText();
+    }
+
+    public getTodoLast(): promise.Promise<string> {
+        let item = this.listTodo.last()
         return item.getText();
     }
 
@@ -59,14 +68,6 @@ export class HomePage{
         this.activeTab.click();
     }
 
-    public getTodoSecond(): promise.Promise<string> {
-        return this.secondTodo.getText();
-    }
-
-    public getTodoThird(): promise.Promise<string> {
-        return this.listTodo.getText();
-    }
-
     public remainingCount(): promise.Promise<string> {
         return this.remainingItem.getText();
     }
@@ -76,6 +77,7 @@ export class HomePage{
     }
 
     public deletedEelement(): void{
+        browser.actions().mouseMove(this.deletedItem).perform();
         this.deletedItem.click();
     }
 
