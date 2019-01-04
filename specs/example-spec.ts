@@ -45,8 +45,7 @@ describe('Testing todomvc.com with angularjs ', () => {
         homePage.clickOnActiveTab();
         homePage.addTodo('Somethink');
         homePage.deletedEelement();
-        expect<any>(homePage.remainingCount()).toBe(1);
-        homePage.deletedEelement();
+        expect<any>(homePage.remainingCount()).toEqual('1');
     })
     //8
     it('TODO list contains two elements of "Runing"', ()=> {
