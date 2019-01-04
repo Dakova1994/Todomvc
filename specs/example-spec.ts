@@ -80,6 +80,6 @@ describe('Testing todomvc.com with angularjs ', () => {
         homePage.refresh();
         expect<any>(homePage.remainingCount()).toBeGreaterThan(1);
     })
-
+    //END
 
 });
