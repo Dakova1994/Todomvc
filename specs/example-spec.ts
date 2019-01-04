@@ -1,6 +1,5 @@
 import { HomePage } from "../pages/example-pages";
-import { browser, WebDriver } from "protractor";
-import { Driver } from "selenium-webdriver/chrome";
+import { browser } from "protractor";
 
 
 const homePage: HomePage = new HomePage();
@@ -44,21 +43,23 @@ describe('Testing todomvc.com with angularjs ', () => {
     //7
     it('Deleted element will be removed from the list', ()=> {
         homePage.clickOnActiveTab();
+        homePage.addTodo('Somethink');
         homePage.deletedEelement();
-     //   expect<any>(homePage.remainingCount()). how to check that?
+        expect<any>(homePage.remainingCount()).toBe(1);
+        homePage.deletedEelement();
     })
     //8
     it('TODO list contains two elements of "Runing"', ()=> {
+        homePage.clickOnActiveTab();
         homePage.addTodo('Runing');
+        expect<any>(homePage.getTodoLast()).toEqual('Runing');
         homePage.addTodo('Runing');
-        expect<any>(homePage.getTodo()).toEqual('Runing');
         expect<any>(homePage.getTodoLast()).toEqual('Runing');
         
     })
     //9
     it('Elemenet shouldnt be added to list', ()=> {
         homePage.addTodo(' ');
-        expect<any>(homePage.getTodo()).toEqual('Runing');
         expect<any>(homePage.getTodoLast()).toEqual('Runing'); 
     })
     //10
@@ -77,8 +78,7 @@ describe('Testing todomvc.com with angularjs ', () => {
     })
     //12
     it('TODO list contains elements.', ()=> {
-        homePage.close();
-        homePage.open();
+        homePage.refresh();
         expect<any>(homePage.remainingCount()).toBeGreaterThan(1);
     })
 

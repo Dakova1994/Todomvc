@@ -1,5 +1,5 @@
-import { $, $$, browser, element, by, promise, ElementFinder, ElementArrayFinder } from 'protractor';
-import { protractor, Ptor } from 'protractor/built/ptor';
+import { $, $$, browser, promise, ElementFinder, ElementArrayFinder } from 'protractor';
+import { protractor } from 'protractor/built/ptor';
 
 
 export class HomePage{
@@ -15,6 +15,7 @@ export class HomePage{
     public remainingItem: ElementFinder;
     public clearCompletedItem: ElementFinder;
     public deletedItem: ElementFinder;
+    public toShowHidden: ElementFinder;
 
 
     constructor(){
@@ -28,16 +29,16 @@ export class HomePage{
         this.activeTab = $$('[class="footer"] [ng-class]').get(1);
         this.remainingItem = $('[class="footer"] [class="ng-binding"]');
         this.clearCompletedItem= $('[ng-click="clearCompletedTodos()"]');
-        this.deletedItem= $('[ng-click="removeTodo(todo)"]');
-
+        this.deletedItem= $('[class="destroy"]');
+        this.toShowHidden = $('[ng-dblclick="editTodo(todo)"]');
     }
 
     public open(): void {
         browser.get(this.url);
     }
 
-    public close():void {
-        browser.
+    public refresh():void {
+        browser.refresh();
     }
 
     public addTodo(addTodoElement){
@@ -77,7 +78,7 @@ export class HomePage{
     }
 
     public deletedEelement(): void{
-        browser.actions().mouseMove(this.deletedItem).perform();
+        browser.actions().mouseMove(this.toShowHidden).perform();
         this.deletedItem.click();
     }
 
